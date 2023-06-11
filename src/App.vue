@@ -1,6 +1,50 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+
+
+import { ref, onMounted } from 'vue'
+
+import {Unit} from './classess/Unit';
+import {OBJ_CLASSES} from './constants/constants';
+import { Direction } from './constants/enums';
+
+const x = new OBJ_CLASSES.Unit(1,'11', Direction.Left);
+
+const x2 = new OBJ_CLASSES.Unit(2,'33',  Direction.Up, [x.id]);
+
+console.log(OBJ_CLASSES , 'OBJ_CLASSES ');
+
+const y = {
+  x, x2
+};
+
+console.log(JSON.stringify(x2))
+
+const xx = JSON.parse(JSON.stringify(x2));
+
+localStorage.setItem('test', JSON.stringify(x2));
+
+const xx2 = new OBJ_CLASSES.Unit(xx.id,xx.name1, xx.direction, xx.unitsIds);
+console.log(xx, xx2);
+xx2.say()
+
+
+// reactive state
+const count = ref(0)
+
+// functions that mutate state and trigger updates
+function increment() {
+  count.value++
+}
+
+
+
+// lifecycle hooks
+onMounted(() => {
+  console.log(`The initial count is`)
+})
 </script>
 
 <template>
