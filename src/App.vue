@@ -1,34 +1,16 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-
+import { Unit } from '@/classess/Unit';
 
 
 import { ref, onMounted } from 'vue'
+import { GAME_OBJ_ClASSES } from '@/constants/constants';
 
-import {Unit} from './classess/Unit';
-import {OBJ_CLASSES} from './constants/constants';
-import { Direction } from './constants/enums';
 
-const x = new OBJ_CLASSES.Unit(1,'11', Direction.Left);
+const x = new Unit(1,'11');
 
-const x2 = new OBJ_CLASSES.Unit(2,'33',  Direction.Up, [x.id]);
-
-console.log(OBJ_CLASSES , 'OBJ_CLASSES ');
-
-const y = {
-  x, x2
-};
-
-console.log(JSON.stringify(x2))
-
-const xx = JSON.parse(JSON.stringify(x2));
-
-localStorage.setItem('test', JSON.stringify(x2));
-
-const xx2 = new OBJ_CLASSES.Unit(xx.id,xx.name1, xx.direction, xx.unitsIds);
-console.log(xx, xx2);
-xx2.say()
+console.log(x);
 
 
 // reactive state
@@ -38,7 +20,6 @@ const count = ref(0)
 function increment() {
   count.value++
 }
-
 
 
 // lifecycle hooks

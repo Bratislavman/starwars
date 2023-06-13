@@ -1,23 +1,18 @@
-import { OBJ_CLASSES } from "../constants/constants";
-import { Direction, OBJ_NAMES_CLASSES } from "../constants/enums";
-
+import { GAME_OBJ_NAMES } from "@/constants/constants";
 
 export class Unit {
 
     public id: number;
     public name1: string;
-    public unitsIds: number[];
-    public direction: Direction;
-    public typeObj: OBJ_NAMES_CLASSES;
+    public typeObj: string;
 
-    public constructor(id: number, name1: string, direction: Direction, unitsIds = []) { 
+    public constructor(id: number, name1: string) { 
 
 
+      //console.log(GAME_OBJ_NAMES);
       this.id = id;
       this.name1 = name1;
-      this.unitsIds = unitsIds;
-      this.direction = direction;
-      this.typeObj = OBJ_NAMES_CLASSES.Unit;
+      this.typeObj = "vbvb";
     }
 
     public say() {
