@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { ref, onMounted } from 'vue'
+
+const count = ref(0)
+
+function increment() {
+  count.value++
+}
+
 const sceneElements = computed(() => {
     return [
         { name: 1 },
@@ -11,23 +19,31 @@ const sceneElements = computed(() => {
         { name: 7 },
     ]
 })
+
 const heroImg = computed(() => {
     const image = '';
-    return require(`@/assets/path/to/image/${image}`);
+    return ''
+    //return require(`@/assets/path/to/image/${image}`);
 })
+
 const heroActions = computed(() => {
+
+    const i =  count.value ? `/src/assets/img/tap.png` : `/src/assets/img/item.png`;
+
     return [
-        { name: 'Действие', img: require(`@/img/tap.png`) },
-        { name: 'Сила', img: require(`@/img/force.png`)  },
-        { name: 'Предмет', img: require(`@/img/item.png/`)  },
-        { name: 'Обмен вещами', img: require(`@/img/trade.png`)  },
+        { name: 'Действие', img: new URL(i, import.meta.url).href },
+        // { name: 'Действие', img: require(`@/img/tap.png`) },
+        // { name: 'Сила', img: require(`@/img/force.png`)  },
+        // { name: 'Предмет', img: require(`@/img/item.png/`)  },
+        // { name: 'Обмен вещами', img: require(`@/img/trade.png`)  },
     ]
 })
+
 const menu = computed(() => {
     return [
-        { name: 'Новая игра', img: require(`@/img/new.png`)  },
-        { name: 'Загрузка и сохранение', img: require(`@/img/save.png`)  },
-        { name: 'Выбор языка', img: require(`@/img/languages.png`)  },
+        // { name: 'Новая игра', img: require(`@/img/new.png`)  },
+        // { name: 'Загрузка и сохранение', img: require(`@/img/save.png`)  },
+        // { name: 'Выбор языка', img: require(`@/img/languages.png`)  },
     ]
 })
 </script>
@@ -75,6 +91,7 @@ const menu = computed(() => {
         <div class="menu">
             <img alt="menu__punct" :src="punct" v-for="punct in menu">
         </div>
+        <img alt="menu__punct1" src="@/assets/img/tap.png" @click="increment">
     </div>
 </template>
 
