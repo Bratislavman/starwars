@@ -5,7 +5,7 @@ import { ref, onMounted } from 'vue'
 const count = ref(0)
 
 function increment() {
-  count.value++
+    count.value++
 }
 
 const sceneElements = computed(() => {
@@ -21,17 +21,20 @@ const sceneElements = computed(() => {
 })
 
 const heroImg = computed(() => {
-    const image = '';
-    return ''
-    //return require(`@/assets/path/to/image/${image}`);
+    const image = '/src/assets/img/characters/races/human.jpg';
+    return new URL(image,
+        import.meta.url).href;
 })
 
 const heroActions = computed(() => {
 
-    const i =  count.value ? `/src/assets/img/tap.png` : `/src/assets/img/item.png`;
+    const i = count.value ? `/src/assets/img/tap.png` : `/src/assets/img/item.png`;
 
-    return [
-        { name: 'Действие', img: new URL(i, import.meta.url).href },
+    return [{
+            name: 'Действие',
+            img: new URL(i,
+                import.meta.url).href
+        },
         // { name: 'Действие', img: require(`@/img/tap.png`) },
         // { name: 'Сила', img: require(`@/img/force.png`)  },
         // { name: 'Предмет', img: require(`@/img/item.png/`)  },
@@ -51,7 +54,7 @@ const menu = computed(() => {
 <template>
     <div class="main">
         <div class="scene">
-            <div class="scene__element" v-for="element in sceneElements">
+            <div class="scene__element icon-border" v-for="element in sceneElements">
                 {{ element.name }}
             </div>
         </div>
@@ -61,96 +64,32 @@ const menu = computed(() => {
         <div class="bottom_left">
             <div class="hero">
                 <div class="icon">
-                    <img alt="hero-icon" :src="heroImg">
+                    <img alt="hero-icon" class="icon-border" :src="heroImg">
                 </div>
                 <div class="heath">
-                    <svg class="heath__svg" fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 471.701 471.701" xml:space="preserve">
-                                    <g>
-                                    	<path d="M433.601,67.001c-24.7-24.7-57.4-38.2-92.3-38.2s-67.7,13.6-92.4,38.3l-12.9,12.9l-13.1-13.1
-                                    		c-24.7-24.7-57.6-38.4-92.5-38.4c-34.8,0-67.6,13.6-92.2,38.2c-24.7,24.7-38.3,57.5-38.2,92.4c0,34.9,13.7,67.6,38.4,92.3
-                                    		l187.8,187.8c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-3.9l188.2-187.5c24.7-24.7,38.3-57.5,38.3-92.4
-                                    		C471.801,124.501,458.301,91.701,433.601,67.001z M414.401,232.701l-178.7,178l-178.3-178.3c-19.6-19.6-30.4-45.6-30.4-73.3
-                                    		s10.7-53.7,30.3-73.2c19.5-19.5,45.5-30.3,73.1-30.3c27.7,0,53.8,10.8,73.4,30.4l22.6,22.6c5.3,5.3,13.8,5.3,19.1,0l22.4-22.4
-                                    		c19.6-19.6,45.7-30.4,73.3-30.4c27.6,0,53.6,10.8,73.2,30.3c19.6,19.6,30.3,45.6,30.3,73.3
-                                    		C444.801,187.101,434.001,213.101,414.401,232.701z"/>
-                                    </g>
+                    <svg class="heath__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+                            <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                            <g><path d="M10,326.1c0,316.1,490,600.6,490,600.6s490-284.5,490-600.6c0-131-94.8-252.9-237.1-252.9c-131,0-252.9,90.3-252.9,221.3c0-131-121.9-221.3-252.9-221.3C104.8,73.2,10,195.2,10,326.1z"/></g>
                             </svg>
                     <div class="heath__text">10/10</div>
                 </div>
                 <div class="force">
-                    <svg class="force__svg" fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,10h7L8,22l3-9H5L13,2Z"/></svg>
+                    <svg class="force__svg" width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12,10h7L8,22l3-9H5L13,2Z"/></svg>
                     <div class="force__text">10/10</div>
                 </div>
             </div>
             <div class="actions">
                 <div class="action" v-for="action in heroActions">
-                    <img alt="force" :src="action.img">
+                    <img alt="icon" :src="action.img">
                 </div>
             </div>
         </div>
-        <div class="menu">
-            <img alt="menu__punct" :src="punct" v-for="punct in menu">
+        <div class="bottom_rigth">
+            <img alt="menu__punct icon-border" :src="punct" v-for="punct in menu">
         </div>
-        <img alt="menu__punct1" src="@/assets/img/tap.png" @click="increment">
     </div>
 </template>
 
-<style scoped>
-header {
-    line-height: 1.5;
-    max-height: 100vh;
-}
+<style>
 
-.logo {
-    display: block;
-    margin: 0 auto 2rem;
-}
-
-nav {
-    width: 100%;
-    font-size: 12px;
-    text-align: center;
-    margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-    color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-    background-color: transparent;
-}
-
-nav a {
-    display: inline-block;
-    padding: 0 1rem;
-    border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-    border: 0;
-}
-
-@media (min-width: 1024px) {
-    header {
-        display: flex;
-        place-items: center;
-        padding-right: calc(var(--section-gap) / 2);
-    }
-    .logo {
-        margin: 0 2rem 0 0;
-    }
-    header .wrapper {
-        display: flex;
-        place-items: flex-start;
-        flex-wrap: wrap;
-    }
-    nav {
-        text-align: left;
-        margin-left: -1rem;
-        font-size: 1rem;
-        padding: 1rem 0;
-        margin-top: 1rem;
-    }
-}
 </style>
