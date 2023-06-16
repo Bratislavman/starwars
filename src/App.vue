@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, reactive } from 'vue'
 import { Game } from '@/classes/Game';
 
-const game = new Game();
+const game = reactive(new Game());
+
+console.log(game.getBg(), '56');
 
 const sceneElements = computed(() => {
     return [
@@ -17,13 +19,13 @@ const sceneElements = computed(() => {
 })
 
 const bg = computed(() => {
-    return new URL(`/src/assets/img/bgs/${game.getHeroBattleActions(game.currentUserId)}.jpg`,
+    return new URL(`/src/assets/img/bgs/${game.getBg(game.currentUserId)}.jpg`,
         import.meta.url).href;
 
 })
 
 const heroImg = computed(() => {
-    return new URL(`/src/assets/img/characters/races/${game.getHeroBattleActions(game.currentUserId)}.jpg`,
+    return new URL(`/src/assets/img/characters/races/${game.currentUserImg}.jpg`,
         import.meta.url).href;
 })
 
@@ -80,13 +82,13 @@ const menu = computed(() => {
         <div class="bottom_left">
             <div class="hero">
                 <div class="icon">
-                    <img alt="hero-icon" class="icon-border" :src="heroImg">
+                    <img alt="hero-icon" class="icon-border" :src="heroImg" @click="game.nextHero">
                 </div>
                 <div class="heath">
                     <svg class="heath__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
-                                                                        <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
-                                                                        <g><path d="M10,326.1c0,316.1,490,600.6,490,600.6s490-284.5,490-600.6c0-131-94.8-252.9-237.1-252.9c-131,0-252.9,90.3-252.9,221.3c0-131-121.9-221.3-252.9-221.3C104.8,73.2,10,195.2,10,326.1z"/></g>
-                                                                        </svg>
+                                                                            <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                                                                            <g><path d="M10,326.1c0,316.1,490,600.6,490,600.6s490-284.5,490-600.6c0-131-94.8-252.9-237.1-252.9c-131,0-252.9,90.3-252.9,221.3c0-131-121.9-221.3-252.9-221.3C104.8,73.2,10,195.2,10,326.1z"/></g>
+                                                                            </svg>
                     <div class="heath__text">10/10</div>
                 </div>
                 <div class="force">
