@@ -1,3 +1,5 @@
 export enum GAME_OBJ_NAMES {
-    Unit = 'Unit',
+    None = 'None',
+    Game = 'Game',
+
 }

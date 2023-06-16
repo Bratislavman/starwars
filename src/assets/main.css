@@ -17,6 +17,7 @@ img {
   border: 3px solid #b2b200;
   border-radius: 10px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .actions {

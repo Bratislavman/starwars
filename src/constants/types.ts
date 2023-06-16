@@ -1,0 +1,1 @@
+export type TTypeOrNull<T = any> = T | null | undefined;

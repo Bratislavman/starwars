@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ref, onMounted } from 'vue'
+import { computed, ref } from 'vue'
+import { Game } from '@/classes/Game';
 
-const count = ref(0)
-
-function increment() {
-    count.value++
-}
+const game = new Game();
 
 const sceneElements = computed(() => {
     return [
@@ -20,17 +16,19 @@ const sceneElements = computed(() => {
     ]
 })
 
+const bg = computed(() => {
+    return new URL(`/src/assets/img/bgs/${game.getHeroBattleActions(game.currentUserId)}.jpg`,
+        import.meta.url).href;
+
+})
+
 const heroImg = computed(() => {
-    const image = '/src/assets/img/characters/races/human.jpg';
-    return new URL(image,
+    return new URL(`/src/assets/img/characters/races/${game.getHeroBattleActions(game.currentUserId)}.jpg`,
         import.meta.url).href;
 })
 
 const heroActions = computed(() => {
-
-    const i = count.value ? `/src/assets/img/tap.png` : `/src/assets/img/item.png`;
-
-    return [{
+    return game.battleMembersIds ? game.getHeroBattleActions(game.currentUserId) : [{
             name: 'Действие',
             img: new URL('/src/assets/img/menu/tap.jpg',
                 import.meta.url).href
@@ -45,25 +43,26 @@ const heroActions = computed(() => {
             img: new URL('/src/assets/img/menu/item.jpg',
                 import.meta.url).href
         },
-        {
-            name: 'Обмен вещами',
-            img: new URL('/src/assets/img/menu/trade.jpg',
-                import.meta.url).href
-        }
+        // {
+        //     name: 'Обмен вещами',
+        //     img: new URL('/src/assets/img/menu/trade.jpg',
+        //         import.meta.url).href
+        // }
     ]
 })
 
 const menu = computed(() => {
-    return [{
-            name: 'Новая игра',
-            img: new URL('/src/assets/img/menu/new.jpg',
-                import.meta.url).href
-        },
-        {
-            name: 'Загрузка и сохранение',
-            img: new URL('/src/assets/img/menu/save.jpg',
-                import.meta.url).href
-        },
+    return [
+        // {
+        //     name: 'Новая игра',
+        //     img: new URL('/src/assets/img/menu/new.jpg',
+        //         import.meta.url).href
+        // },
+        // {
+        //     name: 'Загрузка и сохранение',
+        //     img: new URL('/src/assets/img/menu/save.jpg',
+        //         import.meta.url).href
+        // },
     ]
 })
 </script>
@@ -85,9 +84,9 @@ const menu = computed(() => {
                 </div>
                 <div class="heath">
                     <svg class="heath__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
-                                                        <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
-                                                        <g><path d="M10,326.1c0,316.1,490,600.6,490,600.6s490-284.5,490-600.6c0-131-94.8-252.9-237.1-252.9c-131,0-252.9,90.3-252.9,221.3c0-131-121.9-221.3-252.9-221.3C104.8,73.2,10,195.2,10,326.1z"/></g>
-                                                        </svg>
+                                                                        <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                                                                        <g><path d="M10,326.1c0,316.1,490,600.6,490,600.6s490-284.5,490-600.6c0-131-94.8-252.9-237.1-252.9c-131,0-252.9,90.3-252.9,221.3c0-131-121.9-221.3-252.9-221.3C104.8,73.2,10,195.2,10,326.1z"/></g>
+                                                                        </svg>
                     <div class="heath__text">10/10</div>
                 </div>
                 <div class="force">
@@ -106,7 +105,3 @@ const menu = computed(() => {
         </div>
     </div>
 </template>
-
-<style>
-
-</style>
