@@ -32,21 +32,38 @@ const heroActions = computed(() => {
 
     return [{
             name: 'Действие',
-            img: new URL(i,
+            img: new URL('/src/assets/img/menu/tap.jpg',
                 import.meta.url).href
         },
-        // { name: 'Действие', img: require(`@/img/tap.png`) },
-        // { name: 'Сила', img: require(`@/img/force.png`)  },
-        // { name: 'Предмет', img: require(`@/img/item.png/`)  },
-        // { name: 'Обмен вещами', img: require(`@/img/trade.png`)  },
+        {
+            name: 'Сила',
+            img: new URL('/src/assets/img/menu/force.jpg',
+                import.meta.url).href
+        },
+        {
+            name: 'Предмет',
+            img: new URL('/src/assets/img/menu/item.jpg',
+                import.meta.url).href
+        },
+        {
+            name: 'Обмен вещами',
+            img: new URL('/src/assets/img/menu/trade.jpg',
+                import.meta.url).href
+        }
     ]
 })
 
 const menu = computed(() => {
-    return [
-        // { name: 'Новая игра', img: require(`@/img/new.png`)  },
-        // { name: 'Загрузка и сохранение', img: require(`@/img/save.png`)  },
-        // { name: 'Выбор языка', img: require(`@/img/languages.png`)  },
+    return [{
+            name: 'Новая игра',
+            img: new URL('/src/assets/img/menu/new.jpg',
+                import.meta.url).href
+        },
+        {
+            name: 'Загрузка и сохранение',
+            img: new URL('/src/assets/img/menu/save.jpg',
+                import.meta.url).href
+        },
     ]
 })
 </script>
@@ -68,9 +85,9 @@ const menu = computed(() => {
                 </div>
                 <div class="heath">
                     <svg class="heath__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
-                            <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
-                            <g><path d="M10,326.1c0,316.1,490,600.6,490,600.6s490-284.5,490-600.6c0-131-94.8-252.9-237.1-252.9c-131,0-252.9,90.3-252.9,221.3c0-131-121.9-221.3-252.9-221.3C104.8,73.2,10,195.2,10,326.1z"/></g>
-                            </svg>
+                                                        <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                                                        <g><path d="M10,326.1c0,316.1,490,600.6,490,600.6s490-284.5,490-600.6c0-131-94.8-252.9-237.1-252.9c-131,0-252.9,90.3-252.9,221.3c0-131-121.9-221.3-252.9-221.3C104.8,73.2,10,195.2,10,326.1z"/></g>
+                                                        </svg>
                     <div class="heath__text">10/10</div>
                 </div>
                 <div class="force">
@@ -80,12 +97,12 @@ const menu = computed(() => {
             </div>
             <div class="actions">
                 <div class="action" v-for="action in heroActions">
-                    <img alt="icon" :src="action.img">
+                    <img alt="icon " class="icon-border" :src="action.img">
                 </div>
             </div>
         </div>
         <div class="bottom_rigth">
-            <img alt="menu__punct icon-border" :src="punct" v-for="punct in menu">
+            <img alt="menu__punct" class="menu__punct icon-border" :src="punct.img" v-for="punct in menu">
         </div>
     </div>
 </template>
