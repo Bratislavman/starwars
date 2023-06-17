@@ -2,48 +2,43 @@
 import { computed, ref, reactive } from 'vue'
 import { Game } from '@/classes/Game';
 
-const game = reactive(new Game());
+let game = ref(null);
 
-console.log(game.getBg(), '56');
+function newGame() {
+    game.value = new Game();
+}
+
+function createImgUrl(url) {
+    return new URL(url,
+        import.meta.url).href;
+}
+
+newGame();
 
 const sceneElements = computed(() => {
-    return [
-        { name: 1 },
-        { name: 2 },
-        { name: 3 },
-        { name: 4 },
-        { name: 5 },
-        { name: 6 },
-        { name: 7 },
-    ]
+    return game.value.sceneElements;
 })
 
 const bg = computed(() => {
-    return new URL(`/src/assets/img/bgs/${game.getBg(game.currentUserId)}.jpg`,
-        import.meta.url).href;
-
+    return createImgUrl(`/src/assets/img/bgs/${game.value.currentUserBg}.jpg`);
 })
 
 const heroImg = computed(() => {
-    return new URL(`/src/assets/img/characters/races/${game.currentUserImg}.jpg`,
-        import.meta.url).href;
+    return createImgUrl(`/src/assets/img/characters/races/${game.value.currentUserImg}.jpg`);
 })
 
 const heroActions = computed(() => {
-    return game.battleMembersIds ? game.getHeroBattleActions(game.currentUserId) : [{
+    return game.value.currentUserBattleActions.length ? game.value.currentUserBattleActions : [{
             name: 'Действие',
-            img: new URL('/src/assets/img/menu/tap.jpg',
-                import.meta.url).href
+            img: createImgUrl('/src/assets/img/menu/tap.jpg'),
         },
         {
             name: 'Сила',
-            img: new URL('/src/assets/img/menu/force.jpg',
-                import.meta.url).href
+            img: createImgUrl('/src/assets/img/menu/force.jpg'),
         },
         {
             name: 'Предмет',
-            img: new URL('/src/assets/img/menu/item.jpg',
-                import.meta.url).href
+            img: createImgUrl('/src/assets/img/menu/item.jpg'),
         },
         // {
         //     name: 'Обмен вещами',
@@ -54,12 +49,11 @@ const heroActions = computed(() => {
 })
 
 const menu = computed(() => {
-    return [
-        // {
-        //     name: 'Новая игра',
-        //     img: new URL('/src/assets/img/menu/new.jpg',
-        //         import.meta.url).href
-        // },
+    return [{
+            name: 'Новая игра',
+            img: createImgUrl('/src/assets/img/menu/new.jpg'),
+            action: newGame,
+        },
         // {
         //     name: 'Загрузка и сохранение',
         //     img: new URL('/src/assets/img/menu/save.jpg',
@@ -86,9 +80,9 @@ const menu = computed(() => {
                 </div>
                 <div class="heath">
                     <svg class="heath__svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
-                                                                            <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
-                                                                            <g><path d="M10,326.1c0,316.1,490,600.6,490,600.6s490-284.5,490-600.6c0-131-94.8-252.9-237.1-252.9c-131,0-252.9,90.3-252.9,221.3c0-131-121.9-221.3-252.9-221.3C104.8,73.2,10,195.2,10,326.1z"/></g>
-                                                                            </svg>
+                                                                                            <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                                                                                            <g><path d="M10,326.1c0,316.1,490,600.6,490,600.6s490-284.5,490-600.6c0-131-94.8-252.9-237.1-252.9c-131,0-252.9,90.3-252.9,221.3c0-131-121.9-221.3-252.9-221.3C104.8,73.2,10,195.2,10,326.1z"/></g>
+                                                                                            </svg>
                     <div class="heath__text">10/10</div>
                 </div>
                 <div class="force">
@@ -103,7 +97,7 @@ const menu = computed(() => {
             </div>
         </div>
         <div class="bottom_rigth">
-            <img alt="menu__punct" class="menu__punct icon-border" :src="punct.img" v-for="punct in menu">
+            <img class="menu__punct icon-border" :src="punct.img" v-for="punct in menu" @click="punct.action">
         </div>
     </div>
 </template>
