@@ -1,7 +1,9 @@
-import { GameObject } from "@/classes/GameObject";
+import { GAME_OBJ_NAMES } from "@/constants/enums";
 
-export class Mission0 extends GameObject {
-    public name: string;
+export class Dialog1 {
+
+    public id: number;
+    public name1: string;
     public typeObj: GAME_OBJ_NAMES;
 
     public constructor(id: number, name1: string) { 

@@ -1,9 +1,8 @@
 import { GAME_OBJ_NAMES } from "@/constants/enums";
 
-export class Mission0 {
-
+export class Mission {
     public id: number;
-    public name1: string;
+    public name: string;
     public typeObj: GAME_OBJ_NAMES;
 
     public constructor(id: number, name1: string) { 

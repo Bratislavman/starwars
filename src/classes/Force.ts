@@ -1,12 +1,14 @@
-import { GAME_OBJ_NAMES } from "@/constants/enums";
+import { GameObject } from "@/classes/GameObject";
 
-//это все объекты игры, включая саму игру
-export class GameObject {
-    public id: number = 0;
-    public name: string = '';
-    public typeObj: GAME_OBJ_NAMES = GAME_OBJ_NAMES.None;
+export class Force extends GameObject {
+    public targetId: number;
+    public icon: string;
+    public actionFunc: Function;
 
-    public constructor(name: string) { 
-      this.name = name;
+    public constructor(targetId: number, icon: string, actionFunc: Function ) { 
+      super();
+      this.targetId = targetId;
+      this.icon = icon;
+      this.actionFunc = actionFunc;
     }
 }

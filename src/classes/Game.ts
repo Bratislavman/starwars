@@ -1,6 +1,6 @@
 import { GAME_OBJ_NAMES } from "@/constants/enums";
 import { GameObject } from "@/classes/GameObject";
-import { Mission } from '@/classes/mission/Mission';
+import { Mission } from '@/classes/Mission';
 import { TTypeOrNull } from '@/constants/types';
 
 export class Game extends GameObject {
@@ -30,10 +30,6 @@ export class Game extends GameObject {
       Game.game = this;
     }
 
-    public getUnitBattleActions1(obj: GameObject) {
-      return [];
-    }
-
     public getUnitBattleActions(obj: GameObject) {
       return [];
     }
@@ -43,11 +39,15 @@ export class Game extends GameObject {
       this.heroesIds.push(oldId);
       this.currentUserId = this.heroesIds[0];
 
-      let bg = 'kel-dor';
-      if (this.currentUserId === 1) bg = 'human';
-      if (this.currentUserId === 2) bg = 'kel-dor';
-      if (this.currentUserId === 3) bg = 'trand';
-      this.currentUserImg = bg;
+      if (this.mission) {
+        this.currentUserBg = '';
+        this.currentUserImg = 'human';
+        this.currentUserHp = 0;
+        this.currentUserHpMax = 0;
+        this.currentUserForce = 0;
+        this.currentUserForceMax = 0;
+        this.sceneElements = [];
+      } 
     }
 
     public addGameObject(obj: GameObject) {

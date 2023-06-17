@@ -6,7 +6,7 @@ export class GameObject {
     public name: string = '';
     public typeObj: GAME_OBJ_NAMES = GAME_OBJ_NAMES.None;
 
-    public constructor(name: string) { 
+    public constructor(name: string = '') { 
       this.name = name;
     }
 }

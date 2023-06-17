@@ -1,6 +1,6 @@
 import { GAME_OBJ_NAMES } from "@/constants/enums";
 
-export class Mission {
+export class MissionStartGame {
 
     public id: number;
     public name1: string;
