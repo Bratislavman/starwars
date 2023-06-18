@@ -9,7 +9,11 @@ export enum CHARACTERISTICK {
 }
 
 export enum MISSION {
-    Start = 'Нулевая'
+    Zero = 'Нулевая'
+}
+
+export enum MISSION {
+    Zero = 'Нулевая'
 }
 
 export enum ACTION_TYPE {

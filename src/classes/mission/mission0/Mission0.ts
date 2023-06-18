@@ -1,16 +1,8 @@
-import { GameObject } from "@/classes/GameObject";
+import { Mission } from "@/classes/Mission";
+import { MISSION } from "@/constants/enums";
 
-export class Mission0 extends GameObject {
-    public name: string;
-    public typeObj: GAME_OBJ_NAMES;
-
-    public constructor(id: number, name1: string) { 
-      this.id = id;
-      this.name1 = name1;
-      this.typeObj = GAME_OBJ_NAMES.Unit;
-    }
-
-    public say() {
-      console.log(4444);
+export class Mission0 extends Mission {
+    public constructor() { 
+      super(MISSION.Zero);
     }
 }

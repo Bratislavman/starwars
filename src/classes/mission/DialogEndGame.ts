@@ -1,7 +1,6 @@
-import { GameObject } from "@/classes/GameObject";
+import { Mission } from "@/classes/Mission";
 
-export class MissionEndGame {
-
+export class MissionEndGame extends Mission {
     public id: number;
     public name1: string;
     public typeObj: GAME_OBJ_NAMES;

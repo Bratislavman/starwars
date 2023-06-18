@@ -1,17 +1,29 @@
-import { GAME_OBJ_NAMES } from "@/constants/enums";
+import { MISSION } from "@/constants/enums";
+import { Game } from "@/classes/Game";
 
 export class Mission {
-    public id: number;
-    public name: string;
-    public typeObj: GAME_OBJ_NAMES;
+    public id: MISSION;
 
-    public constructor(id: number, name1: string) { 
-      this.id = id;
-      this.name1 = name1;
-      this.typeObj = GAME_OBJ_NAMES.Unit;
+    public constructor(id: MISSION) { 
+        this.id = id;
+        Game.game.mission = this;
     }
 
-    public say() {
-      console.log(4444);
+    //проверка после игрового действия на то, что задачи игры выполнены/проиграны
+    public questsMiddlwhere(action: Function) {
+      action();
+      if (this.checkMissionStatus()) {
+        this.end()
+      }
+    }
+
+    //проверка статуса задач(когда все завершены - проиграны или выполнены)
+    public checkMissionStatus() {
+      return false;
+    }
+
+    //конец миссии
+    public end() {
+      return false;
     }
 }
