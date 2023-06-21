@@ -8,8 +8,10 @@ export enum CHARACTERISTICK {
     Force = 'Сила',
 }
 
-export enum MISSION {
-    Zero = 'Нулевая'
+export enum TYPE_FORCE {
+    Light = 'Светлая',
+    Dark = 'Тёмная',
+    Neutral = 'Нейтральная',
 }
 
 export enum MISSION {

@@ -1,11 +1,6 @@
-import { GAME_OBJ_NAMES } from "@/constants/enums";
+import { Dialog } from "@/classes/Dialog";
 
-export class Dialog1 {
-
-    public id: number;
-    public name1: string;
-    public typeObj: GAME_OBJ_NAMES;
-
+export class Dialog1 extends Dialog {
     public constructor(id: number, name1: string) { 
       this.id = id;
       this.name1 = name1;

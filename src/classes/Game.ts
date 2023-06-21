@@ -25,7 +25,7 @@ export class Game extends GameObject {
     public sceneElements: any[] = [];
   
     public constructor() { 
-      super('Game');
+      super();
       this.typeObj = GAME_OBJ_NAMES.Game;
       Game.game = this;
     }
