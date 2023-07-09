@@ -1,4 +1,4 @@
-import { GameObject } from "@/classes/GameObject";
+import { GameObject } from "@/classes/game-objects/GameObject";
 import { TYPE_FORCE } from "@/constants/enums";
 
 export class Force extends GameObject {

@@ -7,7 +7,7 @@ export class GameObject {
     //это имя класса объекта, которое будет браться для создания экземпляра с json
     public typeObj: GAME_OBJ_NAMES = GAME_OBJ_NAMES.None;
 
-    public constructor() { 
+    public constructor() {
 
     }
 }

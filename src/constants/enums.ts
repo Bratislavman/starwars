@@ -22,3 +22,17 @@ export enum ACTION_TYPE {
     Attack = 'Attack',
     Evasion = 'Evasion',
 }
+
+//действие персонажа к игр объекту в его локации
+export enum ACTION_UI {
+    //нет действия
+    None = 'None',
+    //взаимодействие
+    Interaction = 'Interaction',
+    //применить предмет
+    Item = 'Item',
+    //применить "силу"
+    Force = 'Evasion',
+    //обменяться предметами со своим персонажем 
+    Trade = 'Trade',
+}

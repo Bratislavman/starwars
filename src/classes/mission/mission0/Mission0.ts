@@ -1,4 +1,4 @@
-import { Mission } from "@/classes/Mission";
+import { Mission } from "@/classes/mission/Mission";
 import { MISSION } from "@/constants/enums";
 
 export class Mission0 extends Mission {

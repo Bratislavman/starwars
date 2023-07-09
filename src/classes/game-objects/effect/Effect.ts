@@ -1,8 +1,9 @@
-import { GameObject } from "@/classes/GameObject";
+import { GameObject } from "@/classes/game-objects/GameObject";
 import { ACTION_TYPE } from "@/constants/enums";
-import { Game } from "@/classes/Game";
+import { Game } from "@/classes/game-objects/Game";
 
 export class Effect extends GameObject {
+  public creatorId: number;
   public targetId: number;
   public actionType: ACTION_TYPE;
   public icon: string;
@@ -10,8 +11,9 @@ export class Effect extends GameObject {
   //сколько действует эффект, -1 бесконечно
   public counter: number = -1;
 
-  public constructor(targetId: number, actionType: ACTION_TYPE, icon: string, counter: number, actionEffect: Function) {
+  public constructor(creatorId: number, targetId: number, actionType: ACTION_TYPE, icon: string, counter: number, actionEffect: Function) {
     super();
+    this.creatorId = creatorId;
     this.targetId = targetId;
     this.actionType = actionType;
     this.icon = icon;
@@ -21,9 +23,9 @@ export class Effect extends GameObject {
 
   public action() {
     this.actionEffect();
-    if (this.counter !== -1) {
-      const counter = this.counter - 1;
-      if (counter === 0) {
+    if (this.counter > 0) {
+      this.counter -= 1;
+      if (this.counter === 0) {
         Game.game.removeGameObject(this.id);
       }
     }

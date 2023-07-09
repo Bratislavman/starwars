@@ -1,1 +1,1 @@
-export type TTypeOrNull<T = any> = T | null | undefined;
+export type THaveType<T = any> = T | null | undefined;

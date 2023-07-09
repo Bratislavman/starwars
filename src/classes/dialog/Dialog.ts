@@ -1,13 +1,12 @@
-import { DialogBtn } from "@/classes/DialogBtn";
-import { Game } from "@/classes/Game";
+import { DialogBtn } from "@/classes/dialog/DialogBtn";
+import { Game } from "@/classes/game-objects/Game";
 
 export class Dialog {
   public title: string = '';
   public text: string = '';
   public btns: DialogBtn[] = [];
 
-  public constructor(title: string, text: string, btns: DialogBtn[] = []) {
-    this.title = title;
+  public constructor(text: string, btns: DialogBtn[] = []) {
     this.text = text;
     this.btns = btns.length ? btns : [
       new DialogBtn('Закрыть', () => {
