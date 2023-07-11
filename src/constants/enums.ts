@@ -23,6 +23,16 @@ export enum ACTION_TYPE {
     Evasion = 'Evasion',
 }
 
+//команда. персонаж в бою будет атаковать чужу команду
+export enum TEAM {
+    //игрок
+    Player = 'Player',
+    //враг
+    Enemy = 'Enemy',
+    //атакует всех
+    Berserk = 'Berserk',
+}
+
 //действие персонажа к игр объекту в его локации
 export enum ACTION_UI {
     //нет действия

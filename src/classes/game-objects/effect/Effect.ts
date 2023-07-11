@@ -1,6 +1,5 @@
 import { GameObject } from "@/classes/game-objects/GameObject";
 import { ACTION_TYPE } from "@/constants/enums";
-import { Game } from "@/classes/game-objects/Game";
 
 export class Effect extends GameObject {
   public creatorId: number;
@@ -8,6 +7,8 @@ export class Effect extends GameObject {
   public actionType: ACTION_TYPE;
   public icon: string;
   public actionEffect: Function;
+  //если эффект только боевой, то после боя он уничтожится
+  public onlyBattle: boolean = false;
   //сколько действует эффект, -1 бесконечно
   public counter: number = -1;
 
@@ -26,7 +27,7 @@ export class Effect extends GameObject {
     if (this.counter > 0) {
       this.counter -= 1;
       if (this.counter === 0) {
-        Game.game.removeGameObject(this.id);
+        this.destroy();
       }
     }
   }

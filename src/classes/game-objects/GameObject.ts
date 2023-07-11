@@ -1,4 +1,5 @@
 import { GAME_OBJ_NAMES } from "@/constants/enums";
+import { Game } from "@/classes/game-objects/Game";
 
 //это все объекты игры, включая саму игру
 export class GameObject {
@@ -9,5 +10,9 @@ export class GameObject {
 
     public constructor() {
 
+    }
+
+    public destroy() {
+        Game.game.removeGameObject(this.id);
     }
 }
